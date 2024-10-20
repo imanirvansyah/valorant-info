@@ -2,26 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+
+p, a {
+  font-family: var(--font-worksans);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-anton);
+  letter-spacing: 1px;
 }
-
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-}
+  
+@layer base {
+  :root {
+    --primary: #ff4655;
+    --white: #fafafa;
+    --off-white: #ece8e1;
+    --gray: #6aa2b8;
+    --yellow: #eaeeb2;
+    --green: #77ecc7;
+    --navy: #0F1923;
+  }}
