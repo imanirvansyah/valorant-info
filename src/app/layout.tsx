@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Anton, Work_Sans } from "next/font/google"
 import "./globals.css";
 import { Providers } from "@/providers";
+import { Navbar } from "@/components/fragments/navbar";
+import { BackgroundImage } from "@/components/atoms/background-image";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,7 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${work_sans.variable} ${anton.variable}`}>
-        <div className="w-screen h-screen overflow-hidden bg-navy">
+        <BackgroundImage />
+        <div className="container mx-auto py-12">
+          <Navbar />
+        </div>
+        <div className="relative">
           <Providers>
             {children}
           </Providers>

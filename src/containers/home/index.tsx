@@ -1,46 +1,43 @@
-import { Fragment } from "react";
-import { Navbar } from "@/components/fragments/navbar";
-import { CustomButton } from "@/components/fragments/custom-button";
-
+import clsx from "clsx";
+import Link from "next/link";
 
 export function HomeContainer() {
   return (
-    <div>
-      <Background />
-      <div className="container mx-auto py-6 px-3 z-20 relative">
-        <Navbar />
-        <div className="h-[40vh]"></div>
-        <div className="text-white h-[50vh] ">
-          <div className="text-center">
-            <h1 className="text-4xl mb-6">Master the World of <span className="text-brand font-anton">VALORANT</span></h1>
-            <p className="font-light">Valorant is a 5v5 character-based tactical shooter where precision and strategy are key to victory. Whether you're a beginner or a seasoned player, learn all about the unique agents, the maps you’ll conquer, and the weapons that will help you rise to the top. Sharpen your skills, form your team, and prepare for the ultimate competition.</p>
-          </div>
-          <div className="mt-24 flex flex-wrap gap-3 justify-center">
-            {MENU.map(menu => <CustomButton key={menu.id} id={menu.id} title={menu.title} subtitle={menu.subtitle} />)}
-          </div>
+    <div className="container mx-auto px-8">
+      <div className="grid grid-cols-12 gap-3 h-[85vh]">
+        <Card href="/agents" className="col-span-12 md:col-span-6 xl:col-span-4 px-8 md:p-12 bg-gradient-to-b from-navy to-brand">
+          <h1 className="text-3xl md:text-5xl  mt-4 md:mt-12 text-white relative">AGENTS</h1>
+          <img src="/agent-mobile.png" alt="" className="md:hidden h-full object-cover absolute left-0 bottom-0 z-0" />
+          <img src="/agents.png" alt="" className="hidden md:block h-full w-full object-cover absolute left-0 bottom-0 z-0" />
+        </Card>
+        <div className="col-span-12 md:col-span-6 xl:col-span-8 grid grid-cols-8 gap-3 h-full">
+          <Card href="/maps" className="col-span-12 xl:col-span-8 px-8 bg-red">
+            <h1 className="text-3xl md:text-5xl  mt-4 md:mt-12 text-white relative z-10">MAPS</h1>
+            <img src="/ascent.png" className="absolute h-full w-full object-cover top-0 left-0 z-0" />
+          </Card>
+          <Card href="/weapons" className="col-span-12 xl:col-span-5 p-8 bg-red bg-orange-500">
+            <h1 className="text-3xl md:text-5xl mt-4 text-white relative z-10 w-1/2 !leading-relaxed">WEAPONS & SKINS</h1>
+            <img src="/weapons.png" className="absolute h-full w-full object-cover top-0 left-0 z-0" />
+          </Card>
+          <Card href="/game-mode" className="col-span-12 xl:col-span-3 p-8 bg-red bg-red-800">
+            <h1 className="text-3xl md:text-5xl  mt-4 text-white relative z-10 w-1/2 !leading-relaxed">GAME MODE</h1>
+            <img src="/game-mode.png" className="absolute h-full w-full object-cover top-0 left-0 z-0" />
+          </Card>
         </div>
       </div>
     </div>
   );
 }
 
-export const Background = () => {
+
+const Card: React.FC<{
+  href: string;
+  className: string;
+  children: React.ReactNode;
+}> = ({ href, className, children }) => {
   return (
-    <Fragment>
-      <div className="bg-gradient-to-t from-navy from-50% w-screen h-screen fixed top-0 z-10" />
-      <img src="/home-background.png" alt="" className="fixed top-0 w-screen h-[70vh] object-cover" />
-    </Fragment>
+    <Link href={href} className={clsx("rounded-xl overflow-hidden relative cursor-pointer hover:border-2 hover:border-white transition-all ease-in duration-300", className)}>
+      {children}
+    </Link>
   )
 }
-
-const MENU = [
-  { id: "agents", title: "Agents", subtitle: "Data and assets of all agents and their abilities" },
-  { id: "buddies", title: "Buddies", subtitle: "Data and assets of all weapon buddies" },
-  { id: "cards", title: "Cards", subtitle: "Data and assets of all player cards" },
-  { id: "currencies", title: "Currencies", subtitle: "Data and assets of all in-game currencies" },
-  { id: "gamemodes", title: "Gamemodes", subtitle: "Data and assets of all gamemodes" },
-  { id: "maps", title: "Maps", subtitle: "Data and assets of all playable maps" },
-  { id: "seasons", title: "Seasons", subtitle: "Data of all seasons" },
-  { id: "titles", title: "Titles", subtitle: "Data of all player titles" },
-  { id: "weapons", title: "Weapons", subtitle: "Data and assets of all weapons, skins and chromas" },
-]

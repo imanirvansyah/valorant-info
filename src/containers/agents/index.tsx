@@ -1,46 +1,11 @@
 "use client"
 
-import { Navbar } from "@/components/fragments/navbar"
-import { useQuery } from "@tanstack/react-query"
 import { AgentService } from "@/services/agents"
-import { useEffect, useState } from "react"
+import { useQuery } from "@tanstack/react-query"
 import clsx from "clsx"
+import { Fragment, useEffect, useState } from "react"
+import { IAgent } from "./type"
 
-export interface IAgent {
-  uuid: string;
-  displayName: string;
-  description: string;
-  developerName: string;
-  characterTags: any;
-  displayIcon: string;
-  displayIconSmall: string;
-  bustPortrait: string;
-  fullPortrait: string;
-  fullPortraitV2: string;
-  killfeedPortrait: string;
-  background: string;
-  backgroundGradientColors: string[];
-  assetPath: string;
-  isFullPortraitRightFacing: false,
-  isPlayableCharacter: true,
-  isAvailableForTest: false,
-  isBaseContent: false,
-  role: {
-    uuid: string;
-    displayName: string;
-    description: string;
-    displayIcon: string;
-    assetPath: string;
-  },
-  recruitmentData: any,
-  abilities: {
-    slot: string;
-    displayName: string;
-    description: string;
-    displayIcon: string;
-  }[]
-  voiceLine: string;
-}
 export const AgentsContainer = () => {
   const { data } = useQuery({ queryKey: [AgentService.getListAgent.key], queryFn: AgentService.getListAgent.call });
   const agents = data?.data.data;
@@ -67,8 +32,7 @@ export const AgentsContainer = () => {
     }
   }, [agents]);
   return (
-    <div className="container mx-auto py-6 px-3 z-20">
-      <Navbar />
+    <Fragment>
       <div className="flex">
         {displayAgent && (
           <>
@@ -109,7 +73,7 @@ export const AgentsContainer = () => {
           ))}
         </div>
       </div>
-    </div>
+    </Fragment>
   )
 }
 
