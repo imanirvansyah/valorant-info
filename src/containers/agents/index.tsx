@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client"
 
 import { AgentService } from "@/services/agents"
@@ -46,7 +47,7 @@ export const AgentsContainer = () => {
               <div className="flex gap-3 mb-3">
                 {displayAgent.abilities.map((ability) => (
                   <div key={ability.displayName} className={clsx("p-5 cursor-pointer", ability.displayName === skill.displayName && "border border-white")} onClick={() => handleSelectSkill(ability)}>
-                    <img src={ability.displayIcon} width={50} />
+                    <img src={ability.displayIcon} width={50} alt="ability icon" />
                   </div>
                 ))}
               </div>
