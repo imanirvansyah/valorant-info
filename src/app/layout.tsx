@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${work_sans.variable} ${anton.variable}`}>
         <BackgroundImage />
-        <div className="container mx-auto py-12">
+        <div className="container mx-auto p-8">
           <Navbar />
         </div>
         <div className="relative">
