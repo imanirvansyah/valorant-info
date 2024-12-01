@@ -2,12 +2,13 @@
 "use client"
 
 import { MapsService } from "@/services/maps";
+import { IMap } from "@/services/maps.type";
 import { useQuery } from "@tanstack/react-query";
 
 export const MapDetailContainer: React.FC<{ id: string }> = ({ id }) => {
 
-  const { data, isPending } = useQuery({ queryKey: [MapsService.getListMap.key], queryFn: async () => await MapsService.getMapDetail.call(id!) });
-  const map = data?.data.data;
+  const { data, isPending } = useQuery({ queryKey: [MapsService.getMapDetail.key], queryFn: async () => await MapsService.getMapDetail.call(id!) });
+  const map: IMap = data?.data.data;
 
   if (!isPending) {
     return (
@@ -30,3 +31,4 @@ export const MapDetailContainer: React.FC<{ id: string }> = ({ id }) => {
     )
   }
 }
+
