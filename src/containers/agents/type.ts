@@ -3,7 +3,7 @@ export interface IAgent {
     displayName: string;
     description: string;
     developerName: string;
-    characterTags: any;
+    characterTags: string[];
     displayIcon: string;
     displayIconSmall: string;
     bustPortrait: string;
@@ -24,7 +24,8 @@ export interface IAgent {
         displayIcon: string;
         assetPath: string;
     },
-    recruitmentData: any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    recruitmentData: Record<string, any>,
     abilities: {
         slot: string;
         displayName: string;

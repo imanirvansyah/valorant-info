@@ -14,5 +14,12 @@ export const MapsService = {
             const data = await callApi.get(`v1/maps/${id}`);
             return data;
         }
-    }
+    },
+    getListGameMode: {
+        key: "list-game-mode",
+        call: async () => {
+            const data = await callApi.get("v1/gamemodes");
+            return data;
+        }
+    },
 }

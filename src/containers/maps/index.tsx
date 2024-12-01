@@ -5,6 +5,7 @@ import Link from "next/link";
 import { MapsService } from "@/services/maps";
 import { useQuery } from "@tanstack/react-query";
 import { IMap } from "@/services/maps.type";
+import Image from "next/image";
 
 
 export const MapsContainer = () => {
@@ -22,7 +23,7 @@ export const MapsContainer = () => {
                 <div className="flex items-center justify-center bg-[rgba(0,0,0,0.5)] absolute w-full h-full">
                   <h1 className="text-white text-2xl">{map.displayName}</h1>
                 </div>
-                <img src={map.splash} alt="" className="h-full object-cover" />
+                <Image src={map.splash} alt="" className="h-full object-cover" width={500} height={500} />
               </Link>
             ))}
           </div>
