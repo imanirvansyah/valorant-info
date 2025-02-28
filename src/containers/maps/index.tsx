@@ -6,12 +6,13 @@ import { MapsService } from "@/services/maps";
 import { useQuery } from "@tanstack/react-query";
 import { IMap } from "@/services/maps.type";
 import Image from "next/image";
-
+import { LoadingPage } from "@/components/atoms/loading";
 
 export const MapsContainer = () => {
   const { data, isPending } = useQuery({ queryKey: [MapsService.getListMap.key], queryFn: MapsService.getListMap.call });
   const mapData = data?.data?.data || [];
 
+  if (isPending) return <LoadingPage />
   if (!!mapData && !isPending) {
     return (
       <div className="container mx-auto p-8">

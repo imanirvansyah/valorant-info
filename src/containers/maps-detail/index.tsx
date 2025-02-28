@@ -5,12 +5,13 @@ import { MapsService } from "@/services/maps";
 import { IMap } from "@/services/maps.type";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
+import { LoadingPage } from "@/components/atoms/loading";
 
 export const MapDetailContainer: React.FC<{ id: string }> = ({ id }) => {
 
   const { data, isPending } = useQuery({ queryKey: [MapsService.getMapDetail.key], queryFn: async () => await MapsService.getMapDetail.call(id!) });
   const map: IMap = data?.data.data;
-
+  if (isPending) return <LoadingPage />
   if (!isPending) {
     return (
       <div className="container mx-auto p-8">

@@ -4,9 +4,12 @@ import { useQuery } from "@tanstack/react-query";
 import { IWeapons } from "./type";
 import Image from "next/image";
 import Link from "next/link";
+import { LoadingPage } from "@/components/atoms/loading";
 
 export const WeaponsContainer = () => {
-  const { data } = useQuery({ queryKey: [WeaponService.getListWeapons.key], queryFn: WeaponService.getListWeapons.call });
+  const { data, isPending } = useQuery({ queryKey: [WeaponService.getListWeapons.key], queryFn: WeaponService.getListWeapons.call });
+
+  if (isPending) return <LoadingPage />
   return (
     <div className="container mx-auto p-8 mt-24 grid grid-cols-3 gap-3">
       <div className="">

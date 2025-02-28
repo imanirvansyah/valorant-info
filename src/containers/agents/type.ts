@@ -3,7 +3,7 @@ export interface IAgent {
     displayName: string;
     description: string;
     developerName: string;
-    characterTags: string[];
+    characterTags: string[] | null;
     displayIcon: string;
     displayIconSmall: string;
     bustPortrait: string;
