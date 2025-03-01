@@ -18,7 +18,7 @@ export const GameModeContainer = () => {
       <div className="container mx-auto p-8">
         <div className="mt-12">
           <h1 className="text-5xl text-white">GAME MODE</h1>
-          <div className="flex flex-wrap gap-3 mt-12">
+          <div className="flex flex-wrap justify-center md:justify-start gap-3 mt-12">
             {gameMode?.filter((gm) => !!gm.listViewIconTall).map((gm) => (
               <Link href={`#`} key={gm.uuid} className="relative cursor-pointer">
                 <div className="flex flex-col items-center justify-end bg-[rgba(0,0,0,0.5)] absolute w-full h-full p-3">

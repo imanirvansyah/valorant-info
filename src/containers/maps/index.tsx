@@ -18,7 +18,7 @@ export const MapsContainer = () => {
       <div className="container mx-auto p-8">
         <div className="mt-12">
           <h1 className="text-5xl text-white">MAPS</h1>
-          <div className="grid grid-cols-3 gap-3 mt-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-12">
             {mapData?.map((map: IMap) => (
               <Link href={`/maps/${map.uuid}`} key={map.uuid} className="h-[300px] col-auto relative cursor-pointer">
                 <div className="flex items-center justify-center bg-[rgba(0,0,0,0.5)] absolute w-full h-full">

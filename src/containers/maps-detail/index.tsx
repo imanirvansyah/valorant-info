@@ -20,8 +20,8 @@ export const MapDetailContainer: React.FC<{ id: string }> = ({ id }) => {
           <h1 className="text-white text-5xl">{map.displayName}</h1>
           <p className="text-white mt-2">{map.coordinates}</p>
         </div>
-        <div className="flex justify-between">
-          <div className="mt-12 w-1/2">
+        <div className="flex flex-wrap justify-between">
+          <div className="mt-12 w-full md:w-1/2">
             <p className="text-xl text-white tracking-widest">Callouts</p>
             <p className="text-white mt-2 font-light">
               {map.callouts?.map((callout, idx) => `${callout.regionName} ${(idx + 1 < map.callouts.length) ? "| " : ""}`)}

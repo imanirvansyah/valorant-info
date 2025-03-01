@@ -3,13 +3,10 @@ import { useQuery } from "@tanstack/react-query";
 import { IWeapons } from "../weapons/type";
 import { WeaponService } from "@/services/weapons";
 import Image from "next/image";
-import { LoadingPage } from "@/components/atoms/loading";
 
 export const WeaponDetailContainer: React.FC<{ id: string }> = ({ id }) => {
-    const { data, isPending } = useQuery({ queryKey: [WeaponService.getWeaponDetail.key], queryFn: async () => await WeaponService.getWeaponDetail.call(id) });
+    const { data } = useQuery({ queryKey: [WeaponService.getWeaponDetail.key], queryFn: async () => await WeaponService.getWeaponDetail.call(id) });
     const weapon: IWeapons = data?.data.data
-
-    if (isPending) return <LoadingPage />
     if (weapon) {
         return (
             <div className="container mx-auto p-8 mt-12">

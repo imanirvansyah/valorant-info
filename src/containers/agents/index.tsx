@@ -13,6 +13,8 @@ export const AgentsContainer = () => {
   const { data, isLoading } = useQuery({ queryKey: [AgentService.getListAgent.key], queryFn: AgentService.getListAgent.call });
   const agents = data?.data.data;
   const [displayAgent, setDisplayAgent] = useState<IAgent>();
+  const nextAgent = agents?.[agents.findIndex((agent: IAgent) => agent.uuid === displayAgent?.uuid) + 1]
+  const prevAgent = agents?.[agents.findIndex((agent: IAgent) => agent.uuid === displayAgent?.uuid) - 1]
   const [skill, setSkill] = useState<{ displayName: string; description: string; }>({ displayName: "", description: "" });
 
   const handleSelectAgent = (agent: IAgent) => {
@@ -42,7 +44,7 @@ export const AgentsContainer = () => {
         {displayAgent && (
           <>
             <div className="flex-1 relative">
-              <Image width={3000} height={3000} src={displayAgent.background} alt="" className="opacity-10" onLoad={() => console.log("loading")} />
+              <Image width={3000} height={3000} src={displayAgent.background} alt="" className="opacity-10" />
               <Image width={3000} height={3000} src={displayAgent.fullPortrait} alt="" className="absolute h-full xl:h-[120%] object-cover z-10 top-20 md:-top-20" />
             </div>
             <div className="flex-1 mt-24 md:mt-48">
@@ -77,8 +79,40 @@ export const AgentsContainer = () => {
             ))}
           </div>
         </div>
+
+        <div className="md:hidden flex justify-between w-full gap-3">
+          {!!prevAgent && (
+            <div onClick={() => {
+              setDisplayAgent(prevAgent)
+              window.scrollTo({
+                top: 0,
+                behavior: 'smooth',
+              });
+            }} className="border-off-white border hover:bg-brand hover:border-transparent w-32 text-center p-3 mb-3">
+              <h1 className="text-white text-2xl">Prev</h1>
+              <div>
+                <Image width={1000} height={1000} src={prevAgent.displayIcon} alt="next-agent" className="w-12 mx-auto my-2" />
+                <p className="text-white text-center mt-2">{prevAgent.displayName}</p>
+              </div>
+            </div>
+          )}
+          {!!nextAgent && (
+            <div onClick={() => {
+              setDisplayAgent(nextAgent)
+              window.scrollTo({
+                top: 0,
+                behavior: 'smooth',
+              });
+            }} className="border-off-white border hover:bg-brand hover:border-transparent w-32 text-center p-3 mb-3 ">
+              <h1 className="text-white text-2xl">Next</h1>
+              <div>
+                <Image width={1000} height={1000} src={nextAgent.displayIcon} alt="next-agent" className="w-12 mx-auto my-2" />
+                <p className="text-white text-center mt-2">{nextAgent.displayName}</p>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   )
 }
-
