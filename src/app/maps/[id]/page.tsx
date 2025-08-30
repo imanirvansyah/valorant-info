@@ -1,21 +1,57 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Card } from "@/components/atoms/card";
-import Link from "next/link";
+import { HeaderDetail } from "@/components/fragments/detail-header";
+
+
+const DATA = {
+    name: "Ascent",
+    imgUrl: "/ascent-banner.png",
+    description: "Representing her home country of South Korea, Jett s agile and  evasive fighting style lets her take risks no one else can. She runs  circles around every skirmish, cutting enemies before they even know  what hit them.",
+    skills: [
+        {
+            name: "Cloudburst",
+            icon: "/Cloudburst-icon.svg",
+            description: "Jett throws a projectile that expands into a brief vision-blocking cloud on impact with a surface.",
+            video: "/jett-cloudburst.mp4",
+        },
+        {
+            name: "Updraft",
+            icon: "/Updraft-icon.svg",
+            description: "Jett propels herself upwards, allowing her to reach higher locations and avoid enemy fire.",
+            video: "/jett-updraft.mp4",
+        },
+        {
+            name: "Tailwind",
+            icon: "/Tailwind-icon.svg",
+            description: "Jett gains a burst of speed in the direction she's moving, allowing her to quickly reposition or escape danger.",
+            video: "/jett-tailwind.mp4",
+        },
+        {
+            name: "Blade Storm",
+            icon: "/Blade-Storm-icon.svg",
+            description: "Blade Storm is an Empowerment ability that Jett can instantly use. On cast, she winds up and equips herself with hitscan throwing knives. Jett can use other abilities and weapons without deactivating Blade Storm; she can re-use the ability to reequip the knives. The knives deal moderate damage and headshots deal high damage. Jett can throw a single knife or all remaining knives at once. If Jett gets a kill with Blade Storm, the knives are replenished to full.",
+            video: "/jett-blade-storm.mp4",
+        }
+    ]
+}
 
 const DetailAgent = () => {
     return (
         <>
-            <div className="px-4  md:p-12 mx-auto relative h-72 xl:h-[400px]">
-                <div className="absolute bg-red-200 top-0 left-0 w-screen h-72 xl:h-[400px] -z-10"></div>
-                <h1 className="text-[#FF4655] text-5xl md:text-8xl uppercase">Ascent</h1>
-                <p className="uppercase mt-4 text-[#FF4655]"><Link href="/">valorant</Link> / <Link href="/maps">maps</Link> / Ascent</p>
-                <div className=" absolute bottom-3 w-12 h-12 bg-red-500 mt-10"></div>
-            </div>
+            <HeaderDetail
+                imgUrl={DATA.imgUrl}
+                title={DATA.name}
+                breadcrumbs={[
+                    { label: "Home", href: "/" },
+                    { label: "Maps", href: "/maps" },
+                    { label: DATA.name, href: "#" }
+                ]}
+            />
             <div className="text-center max-w-[500px] mx-auto my-64">
                 <p>An open playground for small wars of position and attrition divide  two sites on Ascent. Each site can be fortified by irreversible bomb  doors; once they’re down, you’ll have to destroy them or find another  way. Yield as little territory as possible.</p>
                 <div className="mt-48 ">
                     <h2 className="text-2xl md:text-4xl uppercase">Layout</h2>
-                    <div className="w-[500px] h-64 bg-red-200 mt-12"></div>
+                    <img src="/layout-ascent.png" alt="layout ascent" className="w-[500px] mt-12" />
                 </div>
                 <div className="mt-48 ">
                     <h2 className="text-2xl md:text-4xl uppercase">Unique Features</h2>
@@ -27,12 +63,12 @@ const DetailAgent = () => {
             <div className="px-4 md:p-12 mx-auto text-center">
                 <h2 className="text-2xl md:text-4xl uppercase mb-12">galleries</h2>
                 <div className="grid grid-cols-3 gap-3 ">
-                    <Card img="/jett-homepage.png" label="Agent" link="/maps/ascent" />
-                    <Card img="/jett-homepage.png" label="Agent" link="/maps/ascent" />
-                    <Card img="/jett-homepage.png" label="Agent" link="/maps/ascent" />
-                    <Card img="/jett-homepage.png" label="Agent" link="/maps/ascent" />
-                    <Card img="/jett-homepage.png" label="Agent" link="/maps/ascent" />
-                    <Card img="/jett-homepage.png" label="Agent" link="/maps/ascent" />
+                    <Card img="/jett-homepage.png" label="Agent" link="/maps/ascent" className="h-[300px]" />
+                    <Card img="/jett-homepage.png" label="Agent" link="/maps/ascent" className="h-[300px]" />
+                    <Card img="/jett-homepage.png" label="Agent" link="/maps/ascent" className="h-[300px]" />
+                    <Card img="/jett-homepage.png" label="Agent" link="/maps/ascent" className="h-[300px]" />
+                    <Card img="/jett-homepage.png" label="Agent" link="/maps/ascent" className="h-[300px]" />
+                    <Card img="/jett-homepage.png" label="Agent" link="/maps/ascent" className="h-[300px]" />
                 </div>
             </div>
         </>

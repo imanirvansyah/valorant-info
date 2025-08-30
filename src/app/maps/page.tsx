@@ -46,18 +46,18 @@ const Maps = () => {
             { label: "Maps", href: "#" }
         ]} />
         <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mt-48">
-            <Card img="/jett-homepage.png" label="Agent" link="/maps/ascent" />
-            <Card img="/jett-homepage.png" label="Agent" link="/maps/ascent" />
-            <Card img="/jett-homepage.png" label="Agent" link="/maps/ascent" />
-            <Card img="/jett-homepage.png" label="Agent" link="/maps/ascent" />
-            <Card img="/jett-homepage.png" label="Agent" link="/maps/ascent" />
-            <Card img="/jett-homepage.png" label="Agent" link="/maps/ascent" />
-            <Card img="/jett-homepage.png" label="Agent" link="/maps/ascent" />
-            <Card img="/jett-homepage.png" label="Agent" link="/maps/ascent" />
-            <Card img="/jett-homepage.png" label="Agent" link="/maps/ascent" />
-            <Card img="/jett-homepage.png" label="Agent" link="/maps/ascent" />
-            <Card img="/jett-homepage.png" label="Agent" link="/maps/ascent" />
-            <Card img="/jett-homepage.png" label="Agent" link="/maps/ascent" />
+            <Card img="/map-ascent.png" label="Ascent" link="/maps/ascent" />
+            <Card img="/map-ascent.png" label="Ascent" link="/maps/ascent" />
+            <Card img="/map-ascent.png" label="Ascent" link="/maps/ascent" />
+            <Card img="/map-ascent.png" label="Ascent" link="/maps/ascent" />
+            <Card img="/map-ascent.png" label="Ascent" link="/maps/ascent" />
+            <Card img="/map-ascent.png" label="Ascent" link="/maps/ascent" />
+            <Card img="/map-ascent.png" label="Ascent" link="/maps/ascent" />
+            <Card img="/map-ascent.png" label="Ascent" link="/maps/ascent" />
+            <Card img="/map-ascent.png" label="Ascent" link="/maps/ascent" />
+            <Card img="/map-ascent.png" label="Ascent" link="/maps/ascent" />
+            <Card img="/map-ascent.png" label="Ascent" link="/maps/ascent" />
+            <Card img="/map-ascent.png" label="Ascent" link="/maps/ascent" />
         </div>
     </div>
 }

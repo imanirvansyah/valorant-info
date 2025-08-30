@@ -1,6 +1,7 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
+import Link from "next/link"
 
 function Breadcrumb({ ...props }: React.ComponentProps<"nav">) {
   return <nav aria-label="breadcrumb" data-slot="breadcrumb" {...props} />
@@ -31,17 +32,16 @@ function BreadcrumbItem({ className, ...props }: React.ComponentProps<"li">) {
 
 function BreadcrumbLink({
   className,
-  ...props
+  children,
+  href
 }: React.ComponentProps<"a"> & {
-  asChild?: boolean
+  children: React.ReactNode
 }) {
 
   return (
-    <a
-      data-slot="breadcrumb-link"
-      className={cn("hover:text-foreground transition-colors", className)}
-      {...props}
-    />
+    <Link href={href || "#"} data-slot="breadcrumb-link" className={cn("hover:text-foreground transition-colors", className)}>
+      {children}
+    </Link>
   )
 }
 

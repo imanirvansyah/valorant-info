@@ -1,4 +1,5 @@
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/atoms/breadcrumb";
+import { cn } from "@/lib/utils";
 
 export interface IBreadcrumb {
   label: string;
@@ -8,11 +9,12 @@ export interface IBreadcrumb {
 const HeaderPage: React.FC<{
   title: string;
   breadcrumbs: IBreadcrumb[];
-}> = ({ title, breadcrumbs }) => {
+  centered?: boolean;
+}> = ({ title, breadcrumbs, centered }) => {
 
 
   return (
-    <>
+    <div className={cn("flex flex-col", centered ? "items-center text-center" : "items-start text-left")}>
       <h1 className="text-[#FF4655] text-5xl md:text-8xl uppercase title">{title}</h1>
       <Breadcrumb className="uppercase mt-4 mb-48 breadcrumb">
         <BreadcrumbList>
@@ -32,7 +34,7 @@ const HeaderPage: React.FC<{
           })}
         </BreadcrumbList>
       </Breadcrumb>
-    </>
+    </div>
   )
 }
 
