@@ -4,10 +4,9 @@
 import { IconTile, IconTileProps } from "@/components/atoms/icon-tile";
 import { HeaderDetail } from "@/components/fragments/detail-header";
 import { gsap, SplitText, useGSAP } from "@/lib/gsap";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { SkillDescription } from "@/components/fragments/skill-description";
-
-
+import { initRevealX } from "@/lib/reveal";
 const DATA = {
   name: "Jett",
   role: "Duelist",
@@ -53,13 +52,11 @@ const DetailAgent = () => {
     const title = q(".title");
     const breadcrumb = q(".breadcrumb");
     const desc = q("#description");
-    const skills = q("#skills");
     const tl = gsap.timeline({});
     const split = new SplitText(title, { type: "chars" });
     const descSplit = new SplitText(desc, { type: "lines" });
 
     gsap.set(bgImg, { opacity: 0, y: -16, willChange: "transform, opacity" });
-    gsap.set(skills, { opacity: 0, x: 100, willChange: "transform, opacity" });
 
     tl.to(bgImg, { opacity: 1, y: 0, duration: 1 })
       .from(split.chars, {
@@ -79,19 +76,12 @@ const DetailAgent = () => {
         stagger: 0.05,
         delay: 0.2,
       }, "<")
-    gsap.to(skills, {
-      x: 0,
-      autoAlpha: 1,
-      duration: 1,
-      ease: "power3.out",
-      stagger: 1,
-      scrollTrigger: {
-        trigger: skills,
-        start: "top 80%",
-      },
-    });
 
   }, {});
+
+  useEffect(() => {
+    initRevealX();
+  }, [])
 
   const enter = () => {
     tlRef.current?.play();
@@ -121,25 +111,23 @@ const DetailAgent = () => {
       <div className="text-center max-w-[500px] mx-auto my-48">
         <p id="description">{DATA.description}</p>
         <div className="mt-48 ">
-          <div id="skills">
-            <h2 className="text-2xl md:text-4xl uppercase">Special abilities</h2>
-            <div className="w-[500px] h-64 mt-12 relative" onMouseEnter={enter} onMouseLeave={leave}>
-              <video
-                ref={videoRef}
-                src={skill.video}
-                muted
-                playsInline
-                preload="metadata"
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-            </div>
-            <div className="flex gap-3 items-center justify-center">
-              {DATA.skills.map((item) => (
-                <IconTile key={item.name} active={skill.name === item.name} item={item} onClick={() => setSkill(item)} />
-              ))}
-            </div>
-            <SkillDescription skill={{ name: skill.name, description: skill.description }} index={DATA.skills.indexOf(skill)} />
+          <h2 className="text-2xl md:text-4xl uppercase reveal-x">Special abilities</h2>
+          <div className="w-[500px] h-64 mt-12 relative reveal-x" onMouseEnter={enter} onMouseLeave={leave}>
+            <video
+              ref={videoRef}
+              src={skill.video}
+              muted
+              playsInline
+              preload="metadata"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
           </div>
+          <div className="flex gap-3 items-center justify-center reveal-x">
+            {DATA.skills.map((item) => (
+              <IconTile key={item.name} active={skill.name === item.name} item={item} onClick={() => setSkill(item)} />
+            ))}
+          </div>
+          <SkillDescription skill={{ name: skill.name, description: skill.description }} index={DATA.skills.indexOf(skill)} />
         </div>
       </div>
     </div>

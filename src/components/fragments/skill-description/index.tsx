@@ -56,7 +56,7 @@ export const SkillDescription = ({
   }, [skill, index]);
 
   return (
-    <div ref={wrapRef} className="mt-12">
+    <div ref={wrapRef} className="mt-12 reveal-x">
       <h3 ref={titleRef} className="text-2xl mb-3 uppercase">{skill.name}</h3>
       <p ref={descRef}>{skill.description}</p>
     </div>

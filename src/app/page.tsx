@@ -1,7 +1,7 @@
 "use client"
 
 import { Card } from "@/components/atoms/card";
-import { gsap, useGSAP, SplitText } from "@/lib/gsap";
+import { gsap, SplitText, useGSAP } from "@/lib/gsap";
 import { useRef } from "react";
 
 export default function Home() {
