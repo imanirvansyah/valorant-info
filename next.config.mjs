@@ -3,9 +3,9 @@ const nextConfig = {
     images: {
         remotePatterns: [
             {
-                protocol: "http",
-                hostname: "localhost",
-                port: "5000",
+                protocol: "https",
+                hostname: "valorant-info-be.netlify.app",
+                // port: "5000",
                 pathname: "/images/**",
             },
         ],
