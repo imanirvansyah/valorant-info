@@ -1,7 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ['media.valorant-api.com'], // Add your domain here
+        remotePatterns: [
+            {
+                protocol: "http",
+                hostname: "localhost",
+                port: "5000",
+                pathname: "/images/**",
+            },
+        ],
     },
 };
 

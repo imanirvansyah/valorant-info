@@ -1,10 +1,12 @@
-import { callApi } from "@/helpers/api"
+import { callIndependentApi } from "@/helpers/api"
+
+
 
 export const AgentService = {
     getListAgent: {
         key: "list-agents",
         call: async () => {
-            const data = await callApi.get("v1/agents?isPlayableCharacter=true");
+            const data = await callIndependentApi.get("agents");
             return data;
         }
     }

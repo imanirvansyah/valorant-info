@@ -1,10 +1,10 @@
-import { callApi } from "@/helpers/api"
+import { callApi, callIndependentApi } from "@/helpers/api"
 
 export const WeaponService = {
     getListWeapons: {
         key: "list-weapons",
         call: async () => {
-            const data = await callApi.get("v1/weapons");
+            const data = await callIndependentApi.get("weapons");
             return data;
         }
     },

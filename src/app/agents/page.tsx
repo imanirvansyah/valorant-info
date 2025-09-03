@@ -2,12 +2,16 @@
 import { Card } from "@/components/atoms/card";
 import { gsap, SplitText, useGSAP } from "@/lib/gsap";
 import HeaderPage from "@/components/fragments/header";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
+import { AgentService } from "@/services/agents";
+import { IDataList } from "@/types/data";
+import { ENV } from "@/constant/env";
 
 export default function Agents() {
     const containerRef = useRef<HTMLDivElement>(null);
-
+    const [data, setData] = useState<IDataList[] | null>(null);
     useGSAP(() => {
+        if (!data) return;
         const q = gsap.utils.selector(containerRef);
         const title = q(".title");
         const breadcrumb = q(".breadcrumb");
@@ -24,7 +28,6 @@ export default function Agents() {
             .from(breadcrumb, {
                 delay: 0.2,
                 y: 10,
-                opacity: 0,
             }, "<")
             .to(cards, {
                 autoAlpha: 1,
@@ -36,43 +39,26 @@ export default function Agents() {
                 onStart: () => cards.forEach(el => (el.style.pointerEvents = "none")),
                 onComplete: () => cards.forEach(el => (el.style.pointerEvents = "")),
             }, "<");
-    }, {})
+    }, { dependencies: [data], scope: containerRef })
 
+    useEffect(() => {
+        const fetchData = async () => {
+            const res = (await AgentService.getListAgent.call()).data.data.agents;
+            setData(res);
+        };
+        fetchData();
+    }, []);
+
+    if (!data) return <div>Loading...</div>;
     return <div className="px-4 py-8 md:p-12  mx-auto" ref={containerRef}>
         <HeaderPage title="Agents" breadcrumbs={[
             { label: "Home", href: "/" },
             { label: "Agents", href: "#" }
         ]} />
         <div className="grid grid-cols-2 md:grid-cols-6 gap-3">
-            <Card img="/jett-homepage.png" label="Agent" link="/agents/jett" />
-            <Card img="/jett-homepage.png" label="Agent" link="/agents/jett" />
-            <Card img="/jett-homepage.png" label="Agent" link="/agents/jett" />
-            <Card img="/jett-homepage.png" label="Agent" link="/agents/jett" />
-            <Card img="/jett-homepage.png" label="Agent" link="/agents/jett" />
-            <Card img="/jett-homepage.png" label="Agent" link="/agents/jett" />
-            <Card img="/jett-homepage.png" label="Agent" link="/agents/jett" />
-            <Card img="/jett-homepage.png" label="Agent" link="/agents/jett" />
-            <Card img="/jett-homepage.png" label="Agent" link="/agents/jett" />
-            <Card img="/jett-homepage.png" label="Agent" link="/agents/jett" />
-            <Card img="/jett-homepage.png" label="Agent" link="/agents/jett" />
-            <Card img="/jett-homepage.png" label="Agent" link="/agents/jett" />
-            <Card img="/jett-homepage.png" label="Agent" link="/agents/jett" />
-            <Card img="/jett-homepage.png" label="Agent" link="/agents/jett" />
-            <Card img="/jett-homepage.png" label="Agent" link="/agents/jett" />
-            <Card img="/jett-homepage.png" label="Agent" link="/agents/jett" />
-            <Card img="/jett-homepage.png" label="Agent" link="/agents/jett" />
-            <Card img="/jett-homepage.png" label="Agent" link="/agents/jett" />
-            <Card img="/jett-homepage.png" label="Agent" link="/agents/jett" />
-            <Card img="/jett-homepage.png" label="Agent" link="/agents/jett" />
-            <Card img="/jett-homepage.png" label="Agent" link="/agents/jett" />
-            <Card img="/jett-homepage.png" label="Agent" link="/agents/jett" />
-            <Card img="/jett-homepage.png" label="Agent" link="/agents/jett" />
-            <Card img="/jett-homepage.png" label="Agent" link="/agents/jett" />
-            <Card img="/jett-homepage.png" label="Agent" link="/agents/jett" />
-            <Card img="/jett-homepage.png" label="Agent" link="/agents/jett" />
-            <Card img="/jett-homepage.png" label="Agent" link="/agents/jett" />
-            <Card img="/jett-homepage.png" label="Agent" link="/agents/jett" />
-            <Card img="/jett-homepage.png" label="Agent" link="/agents/jett" />
+            {data?.map((agent) => (
+                <Card key={agent.id} img={`${ENV.API_URL}${agent.imgUrl}`} label={agent.name} link={`/agents/${agent.id}`} />
+            ))}
         </div>
     </div>
 }

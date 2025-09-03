@@ -5,6 +5,7 @@ import { gsap, SplitText, useGSAP } from "@/lib/gsap";
 import { useRef } from "react";
 
 export default function Home() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const containerRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const descRef = useRef<HTMLParagraphElement>(null);
@@ -19,6 +20,7 @@ export default function Home() {
     const cards = gsap.utils.toArray<HTMLElement>(q(".card"));
 
     gsap.set(cards, { autoAlpha: 0, y: 16, willChange: "transform, opacity" });
+
     tl.from(splitTitle.words, {
       y: 10,
       opacity: 0,
@@ -46,8 +48,7 @@ export default function Home() {
         onStart: () => cards.forEach(el => (el.style.pointerEvents = "none")),
         onComplete: () => cards.forEach(el => (el.style.pointerEvents = "")),
       }, "0");
-  }, { dependencies: [] })
-
+  }, {});
   return (
     <div ref={containerRef} className="px-4 py-8 md:p-12  mx-auto">
       <h1 className="text-5xl md:text-8xl xl:text-9xl text-[#FF4655] uppercase" ref={titleRef}>not just a tac-shooter fps</h1>

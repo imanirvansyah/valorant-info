@@ -1,10 +1,10 @@
-import { callApi } from "@/helpers/api"
+import { callApi, callIndependentApi } from "@/helpers/api"
 
 export const MapsService = {
     getListMap: {
         key: "list-maps",
         call: async () => {
-            const data = await callApi.get("v1/maps");
+            const data = await callIndependentApi.get("maps");
             return data;
         }
     },
